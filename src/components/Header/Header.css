@@ -1,0 +1,370 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  background-color: #073042;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.header__login-temp {
+  position: fixed;
+  color: #7a7575;
+  top:0;
+  right: 40%;
+  cursor: pointer;
+
+  font-size: 15px;
+}
+.header__menu {
+  visibility: hidden;
+  position: fixed;
+  height: 100%;
+  max-width: 520px;
+  width: 70%;
+  top: 0;
+  right: 0;
+  background-color: #202020;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transition: .5s;
+  transform:translateX(600px);
+}
+
+
+.header__sidebar-close {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-bottom: 3px solid #fff;
+  transform:rotate(45deg);
+  top: 15px;
+  right: 25px;
+  cursor: pointer;
+}
+.header__sidebar-close::after {
+  position: absolute;
+  content: "";
+  width: 22px;
+  height: 22px;
+  border-bottom: 3px solid #fff;
+  transform:rotate(270deg);
+  right: 11px;
+  top: 11px;
+}
+
+.header_color-black {
+  background-color: #202020;
+}
+
+.logo {
+  cursor: pointer;
+  width: 38px;
+  height: 38px;
+  border-radius: 21%;
+  background: radial-gradient(
+      circle at center,
+      rgb(255, 255, 255) 11px,
+      transparent 1px
+    ),
+    #3ddc84;
+}
+
+.logo::after {
+  position: absolute;
+  content: "";
+  margin: 14px 13px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #fff 50%, transparent 50%),
+    radial-gradient(circle at center, #fff 4px, transparent 1px), #3ddc84;
+  background-repeat: no-repeat;
+}
+
+.header__registration {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  color: white;
+  line-height: 16px;
+  font-size: 12px;
+  width: 77px;
+  height: 16px;
+  padding: 0;
+  font-weight: 500;
+  margin-right: 20px;
+
+}
+
+.header__registration_active {
+  display: block;
+}
+.header__login_active {
+  display: block;
+}
+.header__login {
+  background-color: #3ddc84;
+  background-repeat: no-repeat;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  width: 76px;
+  height: 32px;
+  color: #fff;
+  padding: 0;
+  line-height: 16px;
+  font-size: 12px;
+  font-weight: 500;
+
+}
+
+.header__auth {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.header__nav {
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  width: 212px;
+  height: 18px;
+  line-height: 16px;
+  font-size: 12px;
+}
+
+.header__profile {
+  width: 100px;
+  height: 32px;
+  background-color: transparent;
+  border: 3px solid #AAAAAA;
+  border-radius: 20px;
+}
+
+.header__label::before {
+  position: absolute;
+  content: "";
+  border: 2px solid #fff;
+  width: 6px;
+  height: 6px;
+  z-index: 2;
+  border-radius: 50%;
+  top: -2px;
+  left: -15px;
+}
+.header__label::after {
+  position: absolute;
+  content: "";
+  width: 12px;
+  height: 6px;
+  border-radius: 100% 100% 0 0;
+  border: 2px solid #fff;
+  border-bottom: 0;
+  top: 8px;
+  left: -18px;
+}
+
+.header__label {
+  position: absolute;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  top: 8px;
+  left: 30px;
+  cursor: pointer;
+  padding-left: 3px;
+}
+
+.header__movie {
+  text-decoration: none;
+  color: #fff;
+  line-height: 16px;
+  font-weight: 500;
+  font-size: 12px;
+  padding-right: 15px;
+}
+
+.header__mymovie {
+  text-decoration: none;
+  color: #fff;
+  line-height: 16px;
+  font-size: 12px;
+}
+
+.header__nav_active {
+  display: flex;
+}
+
+.header__registration_active {
+  display: block;
+}
+
+.header__login_active {
+  display: block;
+}
+
+.header__button-sidebar {
+  position: relative;
+  padding-bottom: 15%;
+}
+.header__links-sidebar {
+  padding-top: 20%;
+  margin-bottom: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header__link-sidebar {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  padding-bottom: 4px;
+  padding-top: 24px;
+
+}
+.header__link-sidebar_active {
+  border-bottom: 2px solid #fff;
+}
+
+.header__profile-sidebar {
+  width: 100px;
+  height: 32px;
+  background-color: transparent;
+  border: 3px solid #AAAAAA;
+  border-radius: 20px;
+}
+
+.header__label-sidebar::before {
+  position: absolute;
+  content: "";
+  border: 2px solid #fff;
+  width: 6px;
+  height: 6px;
+  z-index: 2;
+  border-radius: 50%;
+  top: -2px;
+  left: -15px;
+}
+.header__label-sidebar::after {
+  position: absolute;
+  content: "";
+  width: 12px;
+  height: 6px;
+  border-radius: 100% 100% 0 0;
+  border: 2px solid #fff;
+  border-bottom: 0;
+  top: 8px;
+  left: -18px;
+}
+
+.header__label-sidebar {
+  position: absolute;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  top: 8px;
+  left: 30px;
+  cursor: pointer;
+  padding-left: 3px;
+}
+
+@media all and (max-width: 800px) {
+  .header {
+    padding: 18px 30px 18px 30px;
+  }
+
+  .header__profile {
+    width: 44px;
+    height: 44px;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .header__label::before {
+    border-bottom: 3px solid #fff;
+    border-top: 3px solid #fff;
+    border-left: 0;
+    border-right: 0;
+    width: 28px;
+    height: 23px;
+    z-index: 2;
+    top: -2px;
+    left: -28px;
+    border-radius: 0;
+  }
+
+  .header__label::after {
+    width: 28px;
+    height: 10px;
+    border: 0;
+    border-bottom: 3px solid #fff;
+    top: 1px;
+    left: -28px;
+  }
+
+  .header__label {
+    position: absolute;
+    color: #fff;
+    font-size: 0;
+    top: 8px;
+    left: 30px;
+    cursor: pointer;
+    padding-left: 3px;
+  }
+
+  .header__menu_active {
+    visibility: visible;
+    transform:translateX(-1px);
+  }
+
+  .header__movie {
+    display: none;
+   }
+
+   .header__mymovie {
+     display: none;
+   }
+}
+
+
+
+@media all and (max-width: 600px) {
+  .header {
+    padding: 14px 30px 14px 30px;
+  }
+  .header__label::after {
+    left: -8px;
+  }
+  .header__label::before {
+    left: -8px;
+  }
+
+}
+
+@media all and (max-width: 400px) {
+  .header__menu {
+    width: 100%;
+  }
+
+}
+

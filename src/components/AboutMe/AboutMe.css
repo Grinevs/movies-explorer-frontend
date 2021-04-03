@@ -1,0 +1,121 @@
+.aboutme {
+  position: relative;
+  background-color: #202020;
+  min-height: 608px;
+  box-sizing: border-box;
+  max-width: 100vw;
+}
+
+.aboutme__student {
+  display: flex;
+  margin-top: 66px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.aboutme__name {
+  font-size: 50px;
+  line-height: 58px;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+
+.aboutme__description {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 500;
+  margin-top: 18px;
+  margin-bottom: 26px;
+}
+
+.aboutme__text {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  margin-top: 18px;
+  margin-bottom: 26px;
+}
+.aboutme__profile {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  height: 100%;
+  padding-right: 50px;
+}
+.aboutme__img {
+  box-sizing: border-box;
+  object-fit: contain;
+  border-radius: 10%;
+}
+.aboutme__list-of-links {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.aboutme__links {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration: none;
+  padding-right: 25px;
+  margin: 0;
+  color: white;
+}
+
+@media all and (max-width: 800px) {
+  .aboutme__name {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .aboutme__description {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 0;
+  }
+  .aboutme__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .aboutme__student {
+    flex-direction: column-reverse;
+  }
+  .aboutme__img {
+    border-radius: 8%;
+  }
+  .aboutme__list-of-links {
+    position: relative;
+  }
+
+  .aboutme__profile {
+    padding-right: 0;
+  }
+  .aboutme__name {
+    font-size: 30px;
+    line-height: 36px;
+    margin-top: 30px;
+  }
+}
+
+@media all and (max-width: 400px) {
+ 
+  .aboutme__description {
+    font-size: 11px;
+    line-height: 16px;
+    margin-bottom: 0;
+  }
+  .aboutme__text {
+    font-size: 11px;
+    line-height: 16px;
+    margin-bottom: 35px;
+  }
+  .aboutme__student {
+    margin-top: 60px;
+  }
+}

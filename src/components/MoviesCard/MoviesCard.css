@@ -1,0 +1,120 @@
+.moviesard {
+  box-sizing: border-box;
+  max-width: 330px;
+  height: 257px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background-color: #222222;
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+
+}
+
+.moviescard__item {
+  display: flex;
+  justify-content: center;
+}
+
+.moviesard__img {
+  /* position: absolute;
+  top:0;
+  left:0;
+  width: 100%; */
+  object-fit: contain;
+  max-height: 190px;
+
+}
+.moviesard__name {
+font-weight: 500;
+font-size: 13px;
+line-height: 16px;
+color: #FFFFFF;
+
+}
+.moviesard__about {
+  padding: 10px 12px 10px 12px;
+  display: flex;
+  justify-content: space-between;
+
+}
+.moviesard__duration {
+font-size: 11px;
+line-height: 13px;
+color: #8B8B8B;
+padding-left: 12px;
+margin: 0;
+}
+
+.moviesard__checkbox-container {
+  position: relative;
+  width: 16px;
+  height: 16px;
+}
+
+.moviesard__checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  z-index: -1;
+}
+.moviesard__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 16px;
+  height: 16px;
+  display: block;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.moviesard__checkbox:checked + .moviesard__label::after {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  content: "";
+  width: 12px;
+  height: 12px;
+  display: block;
+  background-color: #3ddc84;
+  border-radius: 50%;
+}
+
+.moviesard__label_my {
+  background-color: black;
+  cursor: pointer;
+}
+
+.moviesard__label_my::after {
+  position: absolute;
+  top: 7px;
+  left: 3px;
+  content: "";
+  width: 9px;
+  height: 0;
+  display: block;
+  border-bottom: 2px solid #FFFFFF;
+  z-index: 5;
+  border-radius: 0;
+  background-color:#000;
+  transform:rotate(-45deg);
+}
+
+.moviesard__label_my::before {
+  position: absolute;
+  top: 7px;
+  left: 3px;
+  content: "";
+  width: 9px;
+  height: 0;
+  display: block;
+  border-bottom: 2px solid #FFFFFF;
+  border-radius: 0;
+  background-color:#000;
+  transform:rotate(45deg);
+
+}

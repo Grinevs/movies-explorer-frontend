@@ -1,0 +1,27 @@
+.notfound__title {
+  margin: 0;
+  font-size: 140px;
+  line-height: 169px;
+}
+
+.notfound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.notfound__tip {
+  margin: 0;
+  padding-top: 5px;
+  padding-bottom: 184px;
+}
+
+.notfound__link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 17px;
+  color: #4285f4;
+}

@@ -1,0 +1,118 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 400px;
+  align-self: center;
+  margin: 0 auto;
+}
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  flex-basis: 60%;
+}
+
+.register__logo {
+  align-self: stretch;
+}
+
+.input {
+  width: 100%;
+  height: 36px;
+  color: white;
+  background-color: #2f2f2f;
+  border: 0;
+  border-radius: 5px;
+  padding-left: 15px;
+  box-sizing: border-box;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.register__tip {
+  font-size: 10px;
+  line-height: 12px;
+  color: #8b8b8b;
+  margin-bottom: 10px;
+}
+
+.register__hint {
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  visibility: hidden;
+  padding-top: 5px;
+  padding-bottom: 6px;
+}
+
+.register__hint_active {
+  visibility: visible;
+}
+
+.register__button {
+  background-color: #4285f4;
+  color: white;
+  height: 45px;
+  border-radius: 3px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  margin-top: 64px;
+  cursor: pointer;
+
+}
+
+.register__text {
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #8b8b8b;
+  align-self: center;
+  padding: 16px 0;
+  margin: 0;
+}
+
+.register__link {
+  display: inline;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 17px;
+  color: #4285f4;
+  padding-left: 10px;
+  cursor: pointer;
+}
+.register__title {
+  margin: 0;
+  padding: 40px 0;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+@media all and (max-width: 500px) {
+  .register {
+    width: 90%;
+  }
+  register__text {
+    font-size: 12px;
+    line-height: 15px;
+
+  }
+
+  .register__link {
+
+    font-size: 12px;
+    line-height: 15px;
+
+  }
+
+}
