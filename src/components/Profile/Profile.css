@@ -1,0 +1,84 @@
+.profile {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: #202020;
+  height: 100%;
+}
+
+.profile__title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  padding-top: 74px;
+  padding-bottom: 120px;
+}
+
+.profile__data {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 410px;
+}
+
+.profile__name-email {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #424242;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.profile__name-email:last-child {
+  border-bottom: 0;
+}
+
+.profile__placeholder {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.profile__userinfo {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.profile__esc-button {
+  background-color: #202020;
+  color: #EE3465;
+  border: 0;
+  font-size: 13px;
+  line-height: 16px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.profile__edit-button {
+  background-color: #202020;
+  color: white;
+  border: 0;
+  line-height: 16px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 15px;
+  padding-top: 215px;
+}
+
+@media all and (max-width: 500px) {
+    .profile__data {
+      width: 80%;
+    }
+
+
+}

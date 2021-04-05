@@ -1,0 +1,151 @@
+.aboutproject {
+  position: relative;
+  background-color: #202020;
+  box-sizing: border-box;
+  max-width: 100vw;
+}
+.aboutproject__title {
+}
+
+.aboutproject__card {
+  margin-top: 70px;
+  margin-bottom: 110px;
+}
+
+.aboutproject__description {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.aboutproject__card {
+  max-width: 550px;
+}
+
+.aboutproject__card:nth-child(odd) {
+  margin-right: 40px;
+}
+.aboutproject__card-title {
+  font-size: 20px;
+  line-height: 24.2px;
+  font-weight: 400;
+  margin: 0;
+  padding-bottom: 26px;
+  letter-spacing: -0.04em;
+}
+.aboutproject__card-text {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.aboutproject__progress {
+  display: flex;
+  width: 100%;
+  height: 36px;
+  background-color: #303030;
+  position: relative;
+  margin-bottom: 120px;
+}
+
+.aboutproject__back-end {
+  width: 20%;
+}
+.aboutproject__front-end {
+  width: 80%;
+}
+.aboutproject__back-end-time {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  background-color: #3ddc84;
+  z-index: 1;
+  height: 36px;
+  margin: 0;
+  text-align: center;
+  color: #000;
+  margin: auto;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.aboutproject__progress-title {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 500;
+  background-color: transparent;
+  color: #8b8b8b;
+  height: 36px;
+  text-align: center;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.aboutproject__front-end-time {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  z-index: 1;
+  height: 36px;
+  margin: 0;
+  text-align: center;
+  margin: auto;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+@media all and (max-width: 800px) {
+  .aboutproject__card-text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media all and (max-width: 400px) {
+  .aboutproject__card-text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .aboutproject__card-title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .aboutproject__description {
+    flex-direction: column;
+  }
+  .aboutproject__card {
+    margin-bottom: 0;
+  }
+  .aboutproject__card:nth-child(odd) {
+    margin-right: 0;
+  }
+  .aboutproject__progress {
+    margin-top: 30px;
+    margin-bottom: 90px;
+  }
+  .aboutproject__progress-title {
+    font-size: 11px;
+    line-height: 13px;
+  }
+  .aboutproject__front-end-time {
+    font-size: 11px;
+    line-height: 13px;
+  }
+  .aboutproject__back-end-time {
+    font-size: 11px;
+    line-height: 13px;
+  }
+  .aboutproject__back-end {
+    width: 30%;
+  }
+  .aboutproject__front-end {
+    width: 70%;
+  }
+}

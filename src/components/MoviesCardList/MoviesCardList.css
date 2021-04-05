@@ -1,0 +1,38 @@
+.moviesardlist {
+  position: relative;
+  background-color: #202020;
+  box-sizing: border-box;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+.moviescardlist__container {
+  border-top: 1px solid #424242;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 18px 20px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 48px 0 0 0;
+  list-style-type: none;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.moviesardlist__loader {
+  width: 320px;
+  height: 36px;
+  background-color: #2f2f2f;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  align-self: center;
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
