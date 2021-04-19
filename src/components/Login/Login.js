@@ -1,8 +1,64 @@
 import React from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import validator from "validator";
+import api from "../../utils/MainApi";
 
 function Login(props) {
+  const history = useHistory();
+  const [buttonActive, setButtonActive] = React.useState(false);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState({
+    email: true,
+    password: true,
+    editedEmail: false,
+    editedPassword: false,
+  });
+  const [errorStatus, setErrorStatus] = React.useState("");
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    setError({
+      ...error,
+      email: !validator.isEmail(e.target.value),
+      editedEmail: true,
+    });
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setError({
+      ...error,
+      password: !validator.isLength(e.target.value, { min: 2, max: 30 }),
+      editedPassword: true,
+    });
+  };
+
+  React.useLayoutEffect(() => {
+    if (!error.email && !error.password) {
+      setButtonActive(true);
+    } else {
+      setButtonActive(false);
+    }
+    setErrorStatus("");
+  }, [error]);
+
+  const handleClickReg = (e) => {
+    e.preventDefault();
+    api
+      .authUser({ email: email, password: password })
+      .then((data) => {
+        localStorage.setItem('token', data.token);
+        props.setLoginIn(true)
+        history.push('/movies');
+      })
+      .catch((err) => {
+        console.log("Ошибка. Запрос не выполнен: ", err);
+
+        setErrorStatus(err.message);
+      });
+  };
+
   return (
     <section className="register global-padding-blocks">
       <div className="register__logo logo" onClick={props.logoClick}></div>
@@ -14,22 +70,60 @@ function Login(props) {
           required
           type="email"
           placeholder="E-mail"
+          value={email}
+          onChange={handleEmailChange}
         ></input>
-        <span className="register__hint">Что-то пошло не так...</span>
+        <span
+          className={
+            error.email && error.editedEmail
+              ? "register__hint register__hint_active"
+              : "register__hint"
+          }
+        >
+          не валидная почта
+        </span>
         <span className="register__tip">Пароль</span>
         <input
           className="register__input input"
           required
           type="password"
           placeholder="Пароль"
+          value={password}
+          onChange={handlePasswordChange}
         ></input>
-        <span className="register__hint register__hint_active">Что-то пошло не так...</span>
-        <button className="register__button button" type="submit">
-        Войти
+        <span
+          className={
+            error.password && error.editedPassword
+              ? "register__hint register__hint_active"
+              : "register__hint"
+          }
+        >
+          Ввведите пароль от 2 до 30 символов.
+        </span>
+        <button
+          className="register__button button"
+          type="submit"
+          disabled={!buttonActive}
+          onClick={handleClickReg}
+        >
+          Войти
         </button>
-        <p className="register__text">Ещё не зарегистрированы?<Link className="register__link" to='/signup'>Регистрация</Link></p>
-
+        <p className="register__text">
+          Ещё не зарегистрированы?
+          <Link className="register__link" to="/signup">
+            Регистрация
+          </Link>
+        </p>
       </form>
+      <span
+          className={
+            (errorStatus !== "")
+              ? "register__hint register__hint_active"
+              : "register__hint"
+          }
+        >
+         {errorStatus}
+        </span>
     </section>
   );
 }

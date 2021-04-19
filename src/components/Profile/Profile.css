@@ -56,10 +56,11 @@
   border: 0;
   font-size: 13px;
   line-height: 16px;
-
+  cursor: pointer;
   display: flex;
   align-items: center;
   text-align: center;
+  text-decoration: none;
 }
 
 .profile__edit-button {
@@ -72,7 +73,13 @@
   align-items: center;
   text-align: center;
   padding-bottom: 15px;
-  padding-top: 215px;
+  margin-top: 215px;
+  cursor: pointer;
+}
+
+.profile__edit-button:disabled {
+  color: #424242;
+  cursor: not-allowed;
 }
 
 @media all and (max-width: 500px) {

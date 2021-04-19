@@ -9,11 +9,36 @@ import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Notfound from "../Notfound/Notfound.js";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import api from "../../utils/MainApi";
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Protected from '../Protected/Protected';
 
 function App() {
   const history = useHistory();
+  const [currentUser, setCurrentUser] = React.useState();
   const [sideBar, setSideBar] = React.useState(false);
   const [loginIn, setLoginIn] = React.useState(false);
+  const [myMovies, setMyMovies] = React.useState(false);
+
+  React.useEffect(() => {
+    const token = localStorage.getItem("token");
+    token &&
+      api
+        .getJWT(token)
+        .then((data) => {
+
+          api._headers = {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          };
+          setLoginIn(true);
+          setCurrentUser(data);
+        })
+        .catch((err) => {
+          setLoginIn(false);
+        });
+  }, [loginIn]);
 
   const handleLinkClick = (e) => {
     history.push("/");
@@ -30,99 +55,92 @@ function App() {
     history.goBack();
   };
   const handleToProfile = () => {
-    if ((window.visualViewport.width < 800) && sideBar) {
-      history.push("/profile")
+    if (window.visualViewport.width < 800 && sideBar) {
+      history.push("/profile");
       setSideBar(false);
     } else {
-      toggleSidebar()
+      toggleSidebar();
     }
-    if  (window.visualViewport.width > 800) {
-      history.push("/profile")
+    if (window.visualViewport.width > 800) {
+      history.push("/profile");
       setSideBar(false);
     } else {
-      toggleSidebar()
+      toggleSidebar();
     }
-
   };
 
   const toggleSidebar = () => {
     setSideBar(sideBar ? false : true);
   };
-  const handleSetLogin = () => {
-    loginIn ? setLoginIn(false) : setLoginIn(true);
-  };
 
   return (
     <div className="page">
-      <Switch>
-        <Route exact path="/">
-          <Header
-            logoClick={handleLinkClick}
-            signUpClick={handleSignUpClick}
-            signInClick={handleSignInClick}
-            toProfile={handleToProfile}
-            toggleSidebar={toggleSidebar}
-            sideBar={sideBar}
-            login={loginIn}
-            toggleLogin={handleSetLogin}
-          />
-          <Main />
-          <Footer />
-        </Route>
-        <Route exact path="/movies">
-          <Header
-            backColor="header_color"
-            logoClick={handleLinkClick}
-            signUpClick={handleSignUpClick}
-            signInClick={handleSignInClick}
-            toProfile={handleToProfile}
-            toggleSidebar={toggleSidebar}
-            sideBar={sideBar}
-            login={loginIn}
-            toggleLogin={handleSetLogin}
-          />
-          <Movies />
-          <Footer />
-        </Route>
-        <Route exact path="/saved-movies">
-          <Header
-            backColor="header_color"
-            logoClick={handleLinkClick}
-            signUpClick={handleSignUpClick}
-            signInClick={handleSignInClick}
-            toProfile={handleToProfile}
-            toggleSidebar={toggleSidebar}
-            sideBar={sideBar}
-            login={loginIn}
-            toggleLogin={handleSetLogin}
-          />
-          <Movies myMovies />
-          <Footer />
-        </Route>
-        <Route exact path="/profile">
-          <Header
-            backColor="header_color"
-            logoClick={handleLinkClick}
-            signUpClick={handleSignUpClick}
-            signInClick={handleSignInClick}
-            toProfile={handleToProfile}
-            toggleSidebar={toggleSidebar}
-            sideBar={sideBar}
-            login={loginIn}
-            toggleLogin={handleSetLogin}
-          />
-          <Profile />
-        </Route>
-        <Route exact path="/signup">
-          <Register logoClick={handleLinkClick} />
-        </Route>
-        <Route exact path="/signin">
-          <Login logoClick={handleLinkClick} />
-        </Route>
-        <Route exact path="*">
-          <Notfound backClick={handleBackClick} />
-        </Route>
-      </Switch>
+      <CurrentUserContext.Provider value={currentUser}>
+        <Switch>
+          <Route exact path="/">
+            <Header
+              myMovies={myMovies}
+              setMyMovies={setMyMovies}
+              logoClick={handleLinkClick}
+              signUpClick={handleSignUpClick}
+              signInClick={handleSignInClick}
+              toProfile={handleToProfile}
+              toggleSidebar={toggleSidebar}
+              sideBar={sideBar}
+              loginIn={loginIn}
+            />
+            <Main />
+            <Footer />
+          </Route>
+          <ProtectedRoute path="/movies" loginIn={loginIn} myMovies={myMovies}
+              setMyMovies={setMyMovies}
+              backColor="header_color"
+              logoClick={handleLinkClick}
+              signUpClick={handleSignUpClick}
+              signInClick={handleSignInClick}
+              toProfile={handleToProfile}
+              toggleSidebar={toggleSidebar}
+              sideBar={sideBar}
+              component={Protected}
+        >
+
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/saved-movies" loginIn={loginIn} myMovies={myMovies}
+              setMyMovies={setMyMovies}
+              backColor="header_color"
+              logoClick={handleLinkClick}
+              signUpClick={handleSignUpClick}
+              signInClick={handleSignInClick}
+              toProfile={handleToProfile}
+              toggleSidebar={toggleSidebar}
+              sideBar={sideBar}
+              component={Protected}>
+
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/profile" loginIn={loginIn} myMovies={myMovies}
+              setMyMovies={setMyMovies}
+              backColor="header_color"
+              logoClick={handleLinkClick}
+              signUpClick={handleSignUpClick}
+              signInClick={handleSignInClick}
+              toProfile={handleToProfile}
+              toggleSidebar={toggleSidebar}
+              sideBar={sideBar}
+              setLoginIn={setLoginIn}
+              component={Protected}
+              >
+          </ProtectedRoute>
+          <Route exact path="/signup">
+            <Register logoClick={handleLinkClick} setLoginIn={setLoginIn} />
+          </Route>
+          <Route exact path="/signin">
+            <Login logoClick={handleLinkClick} setLoginIn={setLoginIn} />
+          </Route>
+          <Route exact path="*">
+            <Notfound backClick={handleBackClick} />
+          </Route>
+        </Switch>
+      </CurrentUserContext.Provider>
     </div>
   );
 }
