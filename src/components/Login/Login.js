@@ -9,6 +9,7 @@ function Login(props) {
   const [buttonActive, setButtonActive] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [loaderStatus, setLoaderStatus] = React.useState(false);
   const [error, setError] = React.useState({
     email: true,
     password: true,
@@ -45,18 +46,20 @@ function Login(props) {
 
   const handleClickReg = (e) => {
     e.preventDefault();
+    setLoaderStatus(true);
     api
       .authUser({ email: email, password: password })
       .then((data) => {
         localStorage.setItem('token', data.token);
         props.setLoginIn(true)
-        history.push('/movies');
+        history.push('/saved-movies');
       })
       .catch((err) => {
         console.log("Ошибка. Запрос не выполнен: ", err);
 
         setErrorStatus(err.message);
-      });
+      })
+      .finally(() => setLoaderStatus(false));;
   };
 
   return (
@@ -115,6 +118,14 @@ function Login(props) {
           </Link>
         </p>
       </form>
+      <span
+          className={
+            (loaderStatus)
+              ? "loader loader_active"
+              : "loader"
+          }
+        >
+        </span>
       <span
           className={
             (errorStatus !== "")

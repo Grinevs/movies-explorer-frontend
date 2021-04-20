@@ -11,6 +11,7 @@ function Profile(props) {
   const [buttonActive, setButtonActive] = React.useState(false);
   const [email, setEmail] = React.useState(currentUser ? currentUser.email : "E-mail");
   const [username, setUserName] = React.useState(currentUser ? currentUser.name : "Имя");
+  const [loaderStatus, setLoaderStatus] = React.useState(false);
   const [error, setError] = React.useState({
     email: true,
     username: true,
@@ -58,6 +59,7 @@ function Profile(props) {
 
   const handleClickReg = (e) => {
     e.preventDefault();
+    setLoaderStatus(true);
     api
       .editUserProfile({ email: email, name: username })
       .then((data) => {
@@ -68,7 +70,8 @@ function Profile(props) {
         console.log("Ошибка. Запрос не выполнен: ", err);
 
         setErrorStatus(err.message);
-      });
+      })
+      .finally(() => setLoaderStatus(false));
   };
 
   const signOut = () => {
@@ -119,6 +122,14 @@ function Profile(props) {
       </div>
       <button className="profile__edit-button" onClick={handleClickReg} disabled={!buttonActive}>{buttonText}</button>
       <Link className="profile__esc-button" onClick={signOut} to='/'>Выйти из аккаунта</Link>
+      <span
+          className={
+            (loaderStatus)
+              ? "loader loader_active"
+              : "loader"
+          }
+        >
+        </span>
       <span
           className={
             (errorStatus !== "")

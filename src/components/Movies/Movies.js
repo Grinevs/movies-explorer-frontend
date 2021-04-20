@@ -21,7 +21,7 @@ function Movies(props) {
     setNotFound(false)
     if (!props.myMovies) {
       setMoviesSelected([]);
-    }
+    } else {setNotFound(true)}
 
   }, [props.myMovies]);
 

@@ -2,8 +2,10 @@ import React from "react";
 import "./SearchForm.css";
 import moviesApi from "../../utils/MoviesApi";
 import api from "../../utils/MainApi";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function SearchForm(props) {
+  const currentUser = React.useContext(CurrentUserContext);
   const [searchString, setSearchString] = React.useState("");
   const [movies, setMovies] = React.useState([]);
 
@@ -16,8 +18,10 @@ function SearchForm(props) {
       api
           .getMovies()
           .then((movies) => {
-            const newMyMoviesArray = movies.filter((i) =>
-          i.nameRU.includes(searchString)
+            const MyMoviesArray = movies.filter((i) => i.owner === currentUser._id)
+            const newMyMoviesArray = MyMoviesArray.filter((i) =>
+          {const str = i.nameRU.toLowerCase()
+          return str.includes(searchString.toLowerCase())}
         );
         props.setMoviesSelected(newMyMoviesArray);
         if (newMyMoviesArray.length === 0) {props.setNotFound(true)} else {props.setNotFound(false)}
@@ -34,7 +38,9 @@ function SearchForm(props) {
         props.setErrorRequest(false);
         setMovies(data);
         const newMoviesArray = data.filter((i) =>
-          i.nameRU.includes(searchString)
+        {
+          const str = i.nameRU.toLowerCase()
+          return str.includes(searchString.toLowerCase())}
         );
         props.setMoviesSelected(newMoviesArray);
         if (newMoviesArray.length === 0) {props.setNotFound(true)} else {props.setNotFound(false)}

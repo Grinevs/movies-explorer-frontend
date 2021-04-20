@@ -10,6 +10,7 @@ function Register(props) {
   const [email, setEmail] = React.useState("");
   const [username, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [loaderStatus, setLoaderStatus] = React.useState(false);
   const [error, setError] = React.useState({
     email: true,
     username: true,
@@ -60,6 +61,7 @@ function Register(props) {
 
   const handleClickReg = (e) => {
     e.preventDefault();
+    setLoaderStatus(true);
     api
       .addUser({ email: email, password: password, name: username })
       .then(() => {
@@ -80,7 +82,8 @@ function Register(props) {
         console.log("Ошибка. Запрос не выполнен: ", err);
 
         setErrorStatus(err.message);
-      });
+      })
+      .finally(() => setLoaderStatus(false));
   };
 
   return (
@@ -159,6 +162,14 @@ function Register(props) {
           </Link>
         </p>
       </form>
+      <span
+          className={
+            (loaderStatus)
+              ? "loader loader_active"
+              : "loader"
+          }
+        >
+        </span>
       <span
         className={
           errorStatus !== ""

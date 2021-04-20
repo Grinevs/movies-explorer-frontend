@@ -16,12 +16,12 @@ function MoviesCardList(props) {
   let lengthOfMoviesCurrent;
 
   React.useEffect(() => {
-
     if (!props.myMovies && currentUser) {
       api
         .getMovies()
         .then((movie) => {
-          const arr = movie.map((i) => i.movieId);
+          const MyMoviesArray = movie.filter((i) => i.owner === currentUser._id)
+          const arr = MyMoviesArray.map((i) => i.movieId);
           setArrayUniqueId(arr);
         })
         .catch((err) => {
@@ -32,8 +32,9 @@ function MoviesCardList(props) {
         ? api
             .getMovies()
             .then((movie) => {
-              setMoviesLoader(movie);
-              props.setMoviesSelected(movie);
+              const MyMoviesArray = movie.filter((i) => i.owner === currentUser._id)
+              setMoviesLoader(MyMoviesArray);
+              props.setMoviesSelected(MyMoviesArray);
             })
             .catch((err) => {
               console.log("Ошибка. Запрос не выполнен: ", err);
@@ -42,7 +43,7 @@ function MoviesCardList(props) {
     }
     if (daleteMovie) {
       handleLoader();
-      setDeleteMovie(false)
+      setDeleteMovie(false);
     }
   }, [props.myMovies, currentUser, daleteMovie]);
 
@@ -51,13 +52,13 @@ function MoviesCardList(props) {
   };
 
   const handleLoader = () => {
-    if (width >= 769) {
+    if (width >= 1005) {
       lengthOfMoviesCurrent = 12 + lengthExtraMovies;
     }
-    if (width >= 481 && width <= 768) {
+    if (width >= 668 && width <= 1004) {
       lengthOfMoviesCurrent = 8 + lengthExtraMovies;
     }
-    if (width >= 320 && width <= 480) {
+    if (width >= 320 && width <= 667) {
       lengthOfMoviesCurrent = 5 + lengthExtraMovies;
     }
     if (!props.myMovies) {
@@ -81,15 +82,15 @@ function MoviesCardList(props) {
   }, [props.moviesSelected]);
 
   const handleClickPreloader = () => {
-    if (width >= 769) {
+    if (width >= 1005) {
       lengthOfMoviesCurrent = 12;
       setLengthExtraMovies(lengthExtraMovies + 3);
     }
-    if (width >= 481 && width <= 768) {
+    if (width >= 668 && width <= 1004) {
       lengthOfMoviesCurrent = 8;
       setLengthExtraMovies(lengthExtraMovies + 2);
     }
-    if (width >= 320 && width <= 480) {
+    if (width >= 320 && width <= 667) {
       lengthOfMoviesCurrent = 5;
       setLengthExtraMovies(lengthExtraMovies + 2);
     }
@@ -122,7 +123,9 @@ function MoviesCardList(props) {
                 }
                 trailerLink={movie.trailerLink || movie.trailer}
                 url={
-                  typeof movie.image === "object"
+                  movie.image === null
+                    ? "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
+                    : typeof movie.image === "object"
                     ? movie.image.url
                       ? `https://api.nomoreparties.co${movie.image.url}`
                       : "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
@@ -134,11 +137,13 @@ function MoviesCardList(props) {
                 description={movie.description || "Unknown"}
                 nameEN={movie.nameEN || "Unknown"}
                 thumbnail={
-                  typeof movie.image === "object"
-                    ? movie.image.url
-                      ? `https://api.nomoreparties.co${movie.image.url}`
-                      : "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
-                    : movie.image
+                  movie.image === null
+                  ? "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
+                  : typeof movie.image === "object"
+                  ? movie.image.url
+                    ? `https://api.nomoreparties.co${movie.image.url}`
+                    : "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
+                  : movie.image
                 }
               />
             ))}
@@ -152,7 +157,7 @@ function MoviesCardList(props) {
             }`}
             onClick={handleClickPreloader}
           >
-            {props.notFound === true  ? "Ничего не найдено" : "Ещё"}
+            {props.notFound === true ? "Ничего не найдено" : "Ещё"}
           </div>
           <div className=" moviesardlist__loader moviesardlist__loader_error">
             {props.notFound === true ? "Ничего не найдено" : ""}

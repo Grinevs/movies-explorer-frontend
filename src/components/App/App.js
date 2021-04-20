@@ -92,7 +92,7 @@ function App() {
             <Main />
             <Footer />
           </Route>
-          <ProtectedRoute path="/movies" loginIn={loginIn} myMovies={myMovies}
+          <ProtectedRoute exact path="/movies" loginIn={loginIn} myMovies={myMovies}
               setMyMovies={setMyMovies}
               backColor="header_color"
               logoClick={handleLinkClick}
@@ -136,7 +136,19 @@ function App() {
           <Route exact path="/signin">
             <Login logoClick={handleLinkClick} setLoginIn={setLoginIn} />
           </Route>
-          <Route exact path="*">
+          <Route path="*">
+          <Header
+              myMovies={myMovies}
+              setMyMovies={setMyMovies}
+              logoClick={handleLinkClick}
+              signUpClick={handleSignUpClick}
+              signInClick={handleSignInClick}
+              toProfile={handleToProfile}
+              toggleSidebar={toggleSidebar}
+              sideBar={sideBar}
+              loginIn={loginIn}
+              backColor="header_color"
+            />
             <Notfound backClick={handleBackClick} />
           </Route>
         </Switch>

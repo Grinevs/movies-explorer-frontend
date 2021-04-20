@@ -46,6 +46,15 @@ class MainApi {
       .then((res) => this._checkRequest(res));
   }
 
+  editUserProfile(data) {
+    return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(data),
+    })
+      .then((res) => this._checkRequest(res));
+  }
+
   postMovies(data) {
     return fetch(`${this._url}/movies`, {
       method: 'POST',
@@ -72,7 +81,7 @@ class MainApi {
 }
 
 const configApi = {
-  //url: 'http://localhost:3000',
+ // url: 'http://localhost:3000',
   url: 'https://api.grinev.xyz',
   headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
 };
