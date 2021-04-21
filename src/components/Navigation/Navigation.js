@@ -10,15 +10,15 @@ function Navigation() {
        <ul className="navigation__list">
          <li className="navigation__item">
             <a className="navigation__link" href="http://grinev.pro/" target="_blank" rel="noreferrer">Статичный сайт</a>
-            <div className="navigation__arrow"></div>
+            <a className="navigation__link" href="http://grinev.pro/" target="_blank" rel="noreferrer"><div className="navigation__arrow"></div></a>
          </li>
          <li className="navigation__item">
-            <a className="navigation__link" href="http://grinev.pro/" target="_blank" rel="noreferrer">Адаптивный сайт</a>
-            <div className="navigation__arrow"></div>
+            <a className="navigation__link" href="http://grinev.pro/" target="_blank" rel="noreferrer">Адаптивный сайт</a><a className="navigation__link" href="http://grinev.pro/" target="_blank" rel="noreferrer">
+            <div className="navigation__arrow"></div></a>
          </li>
          <li className="navigation__item">
             <a className="navigation__link" href="http://grinev.pro/" target="_blank" rel="noreferrer">Одностраничное приложение</a>
-            <div className="navigation__arrow"></div>
+            <a className="navigation__link" href="http://grinev.pro/" target="_blank" rel="noreferrer"><div className="navigation__arrow"></div></a>
          </li>
        </ul>
 
