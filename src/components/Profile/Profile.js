@@ -27,6 +27,7 @@ function Profile(props) {
       email: !(validator.isEmail(e.target.value) && (e.target.value != currentUser.email)),
       editedEmail: true,
     });
+    setButtonText('Редактировать');
   };
 
   const handleUsernameChange = (e) => {
@@ -39,12 +40,13 @@ function Profile(props) {
       ),
       editedUsername: true,
     });
+    setButtonText('Редактировать');
   };
 
   React.useLayoutEffect(() => {
     setEmail(currentUser ? currentUser.email : "E-mail");
     setUserName(currentUser ? currentUser.name : "Имя");
-    setButtonText('Редактировать');
+
 
   }, [currentUser]);
 
@@ -61,7 +63,8 @@ function Profile(props) {
   const handleClickReg = (e) => {
     e.preventDefault();
     setLoaderStatus(true);
-    setInputActive(true)
+    setInputActive(true);
+    setButtonActive(false);
     api
       .editUserProfile({ email: email, name: username })
       .then((data) => {
@@ -71,12 +74,14 @@ function Profile(props) {
       })
       .catch((err) => {
         console.log("Ошибка. Запрос не выполнен: ", err);
-
+        setButtonText('Изменения НЕ внесены');
         setErrorStatus(err.message);
       })
       .finally(() => {
         setLoaderStatus(false);
-        setInputActive(false)
+        setInputActive(false);
+        setButtonActive(false);
+
       });
   };
 

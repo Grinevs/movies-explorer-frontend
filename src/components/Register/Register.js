@@ -63,7 +63,8 @@ function Register(props) {
   const handleClickReg = (e) => {
     e.preventDefault();
     setLoaderStatus(true);
-    setInputActive(true)
+    setInputActive(true);
+    setButtonActive(false);
     api
       .addUser({ email: email, password: password, name: username })
       .then(() => {
@@ -87,7 +88,8 @@ function Register(props) {
       })
       .finally(() => {
         setLoaderStatus(false);
-        setInputActive(false)
+        setInputActive(false);
+        setButtonActive(true);
       });
   };
 
@@ -170,14 +172,7 @@ function Register(props) {
           </Link>
         </p>
       </form>
-      <span
-          className={
-            (loaderStatus)
-              ? "loader loader_active"
-              : "loader"
-          }
-        >
-        </span>
+      <span className={loaderStatus ? "loader loader_active" : "loader"}></span>
       <span
         className={
           errorStatus !== ""

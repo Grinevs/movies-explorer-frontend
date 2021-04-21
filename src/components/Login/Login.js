@@ -49,12 +49,13 @@ function Login(props) {
     e.preventDefault();
     setLoaderStatus(true);
     setInputActive(true)
+    setButtonActive(false);
     api
       .authUser({ email: email, password: password })
       .then((data) => {
         localStorage.setItem('token', data.token);
         props.setLoginIn(true)
-        history.push('/saved-movies');
+        history.push('/movies');
       })
       .catch((err) => {
         console.log("Ошибка. Запрос не выполнен: ", err);
@@ -64,7 +65,10 @@ function Login(props) {
       .finally(() => {
         setLoaderStatus(false)
         setInputActive(false)
-      });;
+        setButtonActive(true);
+      });
+
+
   };
 
   return (
