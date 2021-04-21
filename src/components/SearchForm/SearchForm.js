@@ -8,9 +8,12 @@ function SearchForm(props) {
   const currentUser = React.useContext(CurrentUserContext);
   const [searchString, setSearchString] = React.useState("");
   const [movies, setMovies] = React.useState([]);
+  const [loaderStatus, setLoaderStatus] = React.useState(false);
 
   const handleButtonClick = (e) => {
     e.preventDefault();
+    setLoaderStatus(true);
+    props.setNotFound(false)
     if (searchString === "") {
       return alert("Нужно ввести ключевое слово");
     }
@@ -29,6 +32,7 @@ function SearchForm(props) {
           .catch((err) => {
             console.log("Ошибка. Запрос не выполнен: ", err);
           })
+          .finally(() => setLoaderStatus(false));
 
 
     } else {
@@ -49,7 +53,7 @@ function SearchForm(props) {
         props.setErrorRequest(true);
         console.log("Ошибка. Запрос не выполнен: ", err);
       })
-      .finally(() => console.log("обработка завершена"));
+      .finally(() => setLoaderStatus(false));
     }
 
   };
@@ -98,6 +102,14 @@ function SearchForm(props) {
           Короткометражки
         </label>
       </div>
+      <span
+          className={
+            (loaderStatus)
+              ? "loader__search loader_active"
+              : "loader__search"
+          }
+        >
+        </span>
     </section>
   );
 }

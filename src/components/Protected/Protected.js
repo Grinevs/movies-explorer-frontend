@@ -20,7 +20,7 @@ function Protected(props) {
       sideBar={props.sideBar}
       loginIn={props.loginIn}
     />
-    <Profile setMyMovies={props.setMyMovies} setLoginIn={props.setLoginIn}/>
+    <Profile setMyMovies={props.setMyMovies} setLoginIn={props.setLoginIn} setCurrentUser={props.setCurrentUser}/>
     </>)
     : <>
     <Header

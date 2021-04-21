@@ -21,7 +21,7 @@ function Movies(props) {
     setNotFound(false)
     if (!props.myMovies) {
       setMoviesSelected([]);
-    } else {setNotFound(true)}
+    } 
 
   }, [props.myMovies]);
 
@@ -41,6 +41,7 @@ function Movies(props) {
         errorRequest={errorRequest}
         setMoviesSelected={handleSetMovies}
         notFound={notFound}
+        setNotFound={setNotFound}
 
       />
     </main>

@@ -11,6 +11,7 @@ function Register(props) {
   const [username, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [loaderStatus, setLoaderStatus] = React.useState(false);
+  const [inputActive, setInputActive] = React.useState(false);
   const [error, setError] = React.useState({
     email: true,
     username: true,
@@ -62,6 +63,7 @@ function Register(props) {
   const handleClickReg = (e) => {
     e.preventDefault();
     setLoaderStatus(true);
+    setInputActive(true)
     api
       .addUser({ email: email, password: password, name: username })
       .then(() => {
@@ -83,7 +85,10 @@ function Register(props) {
 
         setErrorStatus(err.message);
       })
-      .finally(() => setLoaderStatus(false));
+      .finally(() => {
+        setLoaderStatus(false);
+        setInputActive(false)
+      });
   };
 
   return (
@@ -99,6 +104,7 @@ function Register(props) {
           placeholder="Имя"
           value={username}
           onChange={handleUsernameChange}
+          disabled={inputActive}
         ></input>
         <span
           className={
@@ -117,6 +123,7 @@ function Register(props) {
           placeholder="E-mail"
           value={email}
           onChange={handleEmailChange}
+          disabled={inputActive}
         ></input>
         <span
           className={
@@ -135,6 +142,7 @@ function Register(props) {
           placeholder="Пароль"
           value={password}
           onChange={handlePasswordChange}
+          disabled={inputActive}
         ></input>
         <span
           className={

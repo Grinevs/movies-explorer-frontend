@@ -43,7 +43,7 @@ body {
 }
 
 .loader {
- visibility: hidden;
+ display: none;
 margin: 50px auto;
 width: 20px;
 height: 20px;
@@ -54,6 +54,21 @@ border-left-color: transparent;
 position: relative;
 animation: move 1s ease-in 0s infinite;
 }
+
+.loader__search {
+  top: 110px;
+  left: 10px;
+  display: none;
+ margin: 50px auto;
+ width: 20px;
+ height: 20px;
+ border: 2px solid #497DDD;
+ border-right-color: transparent;
+ border-radius: 50%;
+ border-left-color: transparent;
+ position: absolute;
+ animation: move 1s ease-in 0s infinite;
+ }
 
 @keyframes move {
   50% {
@@ -69,7 +84,7 @@ animation: move 1s ease-in 0s infinite;
 }
 
 .loader_active {
-  visibility: visible;
+  display: block;
 }
 
 @media all and (max-width: 800px) {

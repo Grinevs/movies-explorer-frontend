@@ -16,6 +16,7 @@ function MoviesCardList(props) {
   let lengthOfMoviesCurrent;
 
   React.useEffect(() => {
+    props.setNotFound(false);
     if (!props.myMovies && currentUser) {
       api
         .getMovies()
@@ -52,7 +53,7 @@ function MoviesCardList(props) {
   };
 
   const handleLoader = () => {
-    if (width >= 1005) {
+    if (width >= 1005 ) {
       lengthOfMoviesCurrent = 12 + lengthExtraMovies;
     }
     if (width >= 668 && width <= 1004) {
@@ -82,7 +83,11 @@ function MoviesCardList(props) {
   }, [props.moviesSelected]);
 
   const handleClickPreloader = () => {
-    if (width >= 1005) {
+    if (width >= 1298) {
+      lengthOfMoviesCurrent = 12;
+      setLengthExtraMovies(lengthExtraMovies + 4);
+    }
+    if (width >= 1005 && width <= 1297) {
       lengthOfMoviesCurrent = 12;
       setLengthExtraMovies(lengthExtraMovies + 3);
     }

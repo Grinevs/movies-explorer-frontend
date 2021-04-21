@@ -128,6 +128,7 @@ function App() {
               sideBar={sideBar}
               setLoginIn={setLoginIn}
               component={Protected}
+              setCurrentUser={setCurrentUser}
               >
           </ProtectedRoute>
           <Route exact path="/signup">

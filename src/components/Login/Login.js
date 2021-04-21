@@ -10,6 +10,7 @@ function Login(props) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [loaderStatus, setLoaderStatus] = React.useState(false);
+  const [inputActive, setInputActive] = React.useState(false);
   const [error, setError] = React.useState({
     email: true,
     password: true,
@@ -47,6 +48,7 @@ function Login(props) {
   const handleClickReg = (e) => {
     e.preventDefault();
     setLoaderStatus(true);
+    setInputActive(true)
     api
       .authUser({ email: email, password: password })
       .then((data) => {
@@ -59,7 +61,10 @@ function Login(props) {
 
         setErrorStatus(err.message);
       })
-      .finally(() => setLoaderStatus(false));;
+      .finally(() => {
+        setLoaderStatus(false)
+        setInputActive(false)
+      });;
   };
 
   return (
@@ -75,6 +80,7 @@ function Login(props) {
           placeholder="E-mail"
           value={email}
           onChange={handleEmailChange}
+          disabled={inputActive}
         ></input>
         <span
           className={
@@ -93,6 +99,7 @@ function Login(props) {
           placeholder="Пароль"
           value={password}
           onChange={handlePasswordChange}
+          disabled={inputActive}
         ></input>
         <span
           className={

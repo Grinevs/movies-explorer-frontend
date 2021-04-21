@@ -9,6 +9,7 @@ function Profile(props) {
   const currentUser = React.useContext(CurrentUserContext);
   const [buttonText, setButtonText] = React.useState('Редактировать');
   const [buttonActive, setButtonActive] = React.useState(false);
+  const [inputActive, setInputActive] = React.useState(false);
   const [email, setEmail] = React.useState(currentUser ? currentUser.email : "E-mail");
   const [username, setUserName] = React.useState(currentUser ? currentUser.name : "Имя");
   const [loaderStatus, setLoaderStatus] = React.useState(false);
@@ -60,18 +61,23 @@ function Profile(props) {
   const handleClickReg = (e) => {
     e.preventDefault();
     setLoaderStatus(true);
+    setInputActive(true)
     api
       .editUserProfile({ email: email, name: username })
       .then((data) => {
         setButtonText('Изменения внесены');
         setButtonActive(false);
+        props.setCurrentUser(data)
       })
       .catch((err) => {
         console.log("Ошибка. Запрос не выполнен: ", err);
 
         setErrorStatus(err.message);
       })
-      .finally(() => setLoaderStatus(false));
+      .finally(() => {
+        setLoaderStatus(false);
+        setInputActive(false)
+      });
   };
 
   const signOut = () => {
@@ -91,6 +97,7 @@ function Profile(props) {
           placeholder={currentUser ? currentUser.name : "Имя"}
           value={username}
           onChange={handleUsernameChange}
+          disabled={inputActive}
         ></input>
         <span
           className={
@@ -109,6 +116,7 @@ function Profile(props) {
           placeholder={currentUser ? currentUser.email : "E-mail"}
           value={email}
           onChange={handleEmailChange}
+          disabled={inputActive}
         ></input>
         <span
           className={
