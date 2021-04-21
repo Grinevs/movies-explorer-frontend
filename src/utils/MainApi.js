@@ -82,7 +82,7 @@ class MainApi {
 
 const configApi = {
  url: 'http://localhost:3000',
- // url: 'https://api.grinev.xyz',
+ //url: 'https://api.grinev.xyz',
   headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
 };
 

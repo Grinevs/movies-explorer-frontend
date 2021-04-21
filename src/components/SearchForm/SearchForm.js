@@ -13,7 +13,7 @@ function SearchForm(props) {
   const handleButtonClick = (e) => {
     e.preventDefault();
     setLoaderStatus(true);
-    props.setNotFound(false)
+    props.setNotFound(false);
     if (searchString === "") {
       return alert("Нужно ввести ключевое слово");
     }
@@ -68,7 +68,7 @@ function SearchForm(props) {
     e.target.checked
       ? props.setMoviesSelected(newMoviesArray)
       : props.setMoviesSelected(movies);
-      if (newMoviesArray.length === 0) {props.setNotFound(true)} else {props.setNotFound(false)}
+      if (movies === 0) {props.setNotFound(true)} else {props.setNotFound(false)}
   };
 
   return (
