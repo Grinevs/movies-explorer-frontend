@@ -9,16 +9,16 @@ function Navigation() {
        <h2 className="navigation__title">Портфолио</h2>
        <ul className="navigation__list">
          <li className="navigation__item">
-            <Link className="navigation__link" to="#">Статичный сайт</Link>
-            <div className="navigation__arrow"></div>
+            <a className="navigation__link" href="http://grinev.pro/" target="_blank" rel="noreferrer">Статичный сайт</a>
+            <a className="navigation__link" href="http://grinev.pro/" target="_blank" rel="noreferrer"><div className="navigation__arrow"></div></a>
          </li>
          <li className="navigation__item">
-            <Link className="navigation__link" to="#">Адаптивный сайт</Link>
-            <div className="navigation__arrow"></div>
+            <a className="navigation__link" href="http://grinev.pro/" target="_blank" rel="noreferrer">Адаптивный сайт</a><a className="navigation__link" href="http://grinev.pro/" target="_blank" rel="noreferrer">
+            <div className="navigation__arrow"></div></a>
          </li>
          <li className="navigation__item">
-            <Link className="navigation__link" to="#">Одностраничное приложение</Link>
-            <div className="navigation__arrow"></div>
+            <a className="navigation__link" href="http://grinev.pro/" target="_blank" rel="noreferrer">Одностраничное приложение</a>
+            <a className="navigation__link" href="http://grinev.pro/" target="_blank" rel="noreferrer"><div className="navigation__arrow"></div></a>
          </li>
        </ul>
 

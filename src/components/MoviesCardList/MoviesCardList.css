@@ -35,4 +35,14 @@
   align-self: center;
   margin-top: 50px;
   margin-bottom: 80px;
+  cursor: pointer;
+}
+
+.moviesardlist__loader_disable {
+  display: none;
+}
+
+.moviesardlist__loader_error {
+  cursor: auto;
+  background-color: #202020;
 }

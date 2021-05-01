@@ -17,8 +17,7 @@ module.exports = {
     'react',
   ],
   rules: {
-    'no-underscore-dangle': 'off',
-    'no-console': 'off',
+    'no-underscore-dangle': ['error', { allow: ['_id', '_headers', '_url', '_checkRequest'] }],
     'react/prop-types': 'off',
   },
 };

@@ -3,6 +3,15 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 
 function Header(props) {
+  const handleClickMovies = () => {
+    props.setMyMovies(false)
+    props.toggleSidebar()
+  }
+
+  const handleClickMyMovies = () => {
+    props.setMyMovies(true)
+    props.toggleSidebar()
+  }
   return (
     <div
       className={
@@ -11,17 +20,14 @@ function Header(props) {
           : "header global-padding-blocks"
       }
     >
-      <div className="header__login-temp" onClick={props.toggleLogin}>
-        AUTH {props.login ? "True" : "False"} click me to toggle
-      </div>
       <div className="header__logo logo" onClick={props.logoClick}></div>
       <div className="header__nav ">
-        {!props.login ? (
+        {props.loginIn ? (
           <>
-            <Link to="/movies" className="header__movie">
+            <Link to="/movies" className="header__movie" onClick={handleClickMovies}>
               Фильмы
             </Link>
-            <Link to="/saved-movies" className="header__mymovie">
+            <Link to="/saved-movies" className="header__mymovie" onClick={handleClickMyMovies}>
               Сохраненные фильмы
             </Link>
           </>
@@ -31,7 +37,7 @@ function Header(props) {
       </div>
 
       <div className="header__auth ">
-        {!props.login ? (
+        {props.loginIn ? (
           <>
             <button
               className="header__profile"
@@ -79,14 +85,14 @@ function Header(props) {
           <Link
             to="/movies"
             className="header__link-sidebar header__link-sidebar_active"
-            onClick={props.toggleSidebar}
+            onClick={handleClickMovies}
           >
             Фильмы
           </Link>
           <Link
             to="/saved-movies"
             className="header__link-sidebar"
-            onClick={props.toggleSidebar}
+            onClick={handleClickMyMovies}
           >
             Сохраненные фильмы
           </Link>

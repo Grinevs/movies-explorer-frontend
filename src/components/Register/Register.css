@@ -68,7 +68,6 @@
   line-height: 17px;
   margin-top: 64px;
   cursor: pointer;
-
 }
 
 .register__text {
@@ -98,6 +97,12 @@
   line-height: 29px;
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  background-color: #8b8b8b;
+
+}
+
 @media all and (max-width: 500px) {
   .register {
     width: 90%;
@@ -105,14 +110,12 @@
   register__text {
     font-size: 12px;
     line-height: 15px;
-
   }
 
   .register__link {
-
     font-size: 12px;
     line-height: 15px;
-
   }
+
 
 }
